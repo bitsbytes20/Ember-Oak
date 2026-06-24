@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ember & Oak — Fine Dining</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand" onclick="goPage('home')">Ember & Oak</div>
+  <div class="nav-links" id="navLinks">
+    <a onclick="goPage('home')" class="active" data-page="home">Home</a>
+    <a onclick="goPage('menu')" data-page="menu">Menu</a>
+    <a onclick="goPage('table')" data-page="table">Table Booking</a>
+    <a onclick="goPage('party')" data-page="party">Party Booking</a>
+    <a onclick="goPage('contact')" data-page="contact">Contact</a>
+    <a onclick="goPage('admin')" data-page="admin">Admin</a>
+  </div>
+  <button class="nav-reserve" onclick="goPage('table')">Reserve</button>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">☰</button>
+</nav>
+
+<!-- =================== HOME =================== -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-accent"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Est. 2018 · London, Mayfair</div>
+      <h1 class="hero-title">Where fire<br><em>meets finesse</em></h1>
+      <p class="hero-sub">A celebration of open-flame cooking and seasonal British produce, curated by Chef Isabelle Vance. Every dish tells the story of where it was grown, caught, or raised.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="goPage('menu')">Explore the Menu</button>
+        <button class="btn-secondary" onclick="goPage('table')">Book a Table</button>
+      </div>
+    </div>
+    <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
+  </div>
+
+  <div class="home-features">
+    <div class="feature-card">
+      <div class="feature-icon">🔥</div>
+      <h3>Open Fire Kitchen</h3>
+      <p>Our kitchen revolves around a central wood-fired hearth. Every protein, vegetable, and sauce passes through the flame — smoke is our seasoning.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌿</div>
+      <h3>Seasonal & Local</h3>
+      <p>We change the menu every six weeks to follow British growing seasons. Our farmers and fishermen are named on every table card.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🍷</div>
+      <h3>Natural Wine Cellar</h3>
+      <p>Over 300 natural, biodynamic, and low-intervention labels curated by Sommelier Reza Akbari. Non-alcoholic pairings available on request.</p>
+    </div>
+  </div>
+
+  <div class="home-divider">Crafted with purpose</div>
+
+  <div class="home-about">
+    <div class="about-visual">
+      <div class="about-visual-inner">
+        <svg class="fire-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 70C28 70 18 62 18 50C18 38 28 30 32 22C34 30 36 33 40 35C38 28 42 18 50 12C50 22 56 27 58 35C62 30 62 22 60 15C68 22 72 32 72 43C72 57 57 70 40 70Z" fill="rgba(201,168,76,0.3)" stroke="rgba(201,168,76,0.6)" stroke-width="1.5"/>
+          <path d="M40 65C31 65 24 58 24 50C24 42 30 38 32 32C34 38 37 40 40 41C38 36 41 30 46 26C46 33 50 36 51 41C53 38 53 33 51 28C57 33 60 40 60 47C60 57 51 65 40 65Z" fill="rgba(201,168,76,0.5)"/>
+        </svg>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase">The Hearth</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="about-eyebrow">Our philosophy</div>
+      <h2>Cooking as it should be—<em style="font-family:'Playfair Display',serif;font-style:italic">honest</em></h2>
+      <p>Chef Isabelle Vance trained under three Michelin-starred kitchens before returning to Britain to open Ember & Oak. She believes the best food is the simplest food, made extraordinary by the quality of its ingredients and the care of its preparation.</p>
+      <p>The name says it all: ember, for the ancient warmth of fire-cooked food; oak, for the British countryside where most of our ingredients originate.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-num">7</div><div class="stat-label">Years open</div></div>
+        <div class="stat"><div class="stat-num">42</div><div class="stat-label">Covers</div></div>
+        <div class="stat"><div class="stat-num">18</div><div class="stat-label">Farm partners</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== MENU =================== -->
+<div class="page" id="page-menu">
+  <div class="menu-hero">
+    <h1>The Menu</h1>
+    <p>Updated seasonally · Allergen information available from your server</p>
+  </div>
+  <div class="menu-tabs">
+    <button class="menu-tab active" onclick="switchMenu(this,'menu-tasting')">Tasting</button>
+    <button class="menu-tab" onclick="switchMenu(this,'menu-a-la-carte')">À la Carte</button>
+    <button class="menu-tab" onclick="switchMenu(this,'menu-wine')">Wine & Drinks</button>
+    <button class="menu-tab" onclick="switchMenu(this,'menu-sunday')">Sunday Lunch</button>
+  </div>
+
+  <div class="menu-section active" id="menu-tasting">
+    <div class="menu-section-title">Tasting Menu — 7 courses · £95 per person</div>
+    <div class="menu-grid">
+      <div class="menu-item"><div><div class="menu-item-name">Snacks from the fire</div><div class="menu-item-desc">A rotating selection of small bites from the hearth — today: ember-roasted carrot skewer, duck liver parfait on sourdough crisp, cured Cornish mackerel</div><div class="menu-item-tags"><span class="tag tag-gf">GF available</span></div></div><div class="menu-item-price">Included</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">White asparagus, sea herb butter, cured yolk</div><div class="menu-item-desc">Wye Valley white asparagus, barely warmed, with a cultured butter infused with coastal herbs and a slow-cured egg yolk</div><div class="menu-item-tags"><span class="tag tag-v">V</span><span class="tag tag-gf">GF</span></div></div><div class="menu-item-price">Included</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Seabream, fennel, saffron broth</div><div class="menu-item-desc">Day-boat Cornish seabream, skin crisped over oak, in a slow-reduced saffron and fennel broth with bronze fennel fronds</div><div class="menu-item-tags"><span class="tag tag-gf">GF</span></div></div><div class="menu-item-price">Included</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Sorrel sorbet</div><div class="menu-item-desc">A palate cleanser of young sorrel from our kitchen garden, frozen with English sparkling wine and a touch of elderflower</div><div class="menu-item-tags"><span class="tag tag-v">V</span><span class="tag tag-gf">GF</span></div></div><div class="menu-item-price">Included</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Dry-aged Dexter sirloin, bone marrow, coal oil</div><div class="menu-item-desc">35-day dry-aged sirloin from Grange Farm, Herefordshire. Rested over embers, finished with rendered bone marrow and coal-infused oil</div><div class="menu-item-tags"><span class="tag tag-gf">GF</span></div></div><div class="menu-item-price">Included</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Farmhouse cheeses</div><div class="menu-item-desc">Three British farmhouse cheeses, served at room temperature with oat crackers, quince, and honey from our rooftop hive</div><div class="menu-item-tags"><span class="tag tag-v">V</span></div></div><div class="menu-item-price">Included</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Burnt honey tart, lavender cream</div><div class="menu-item-desc">Thin-crust tart of caramelised honey from Herefordshire, with a Madagascan lavender cream and a dusting of burnt sugar</div><div class="menu-item-tags"><span class="tag tag-v">V</span></div></div><div class="menu-item-price">Included</div></div>
+    </div>
+    <div class="menu-wine-note"><strong>Wine flight</strong> — Matched wine pairing for the full tasting menu: £55 per person · Non-alcoholic pairing available: £35 per person. Speak to Reza about bespoke pairings for dietary requirements.</div>
+  </div>
+
+  <div class="menu-section" id="menu-a-la-carte">
+    <div class="menu-section-title">Starters</div>
+    <div class="menu-grid">
+      <div class="menu-item"><div><div class="menu-item-name">Smoked celeriac velouté</div><div class="menu-item-desc">Cold-smoked celeriac soup, truffle oil, pickled walnut, grilled sourdough</div><div class="menu-item-tags"><span class="tag tag-v">V</span></div></div><div class="menu-item-price">£14</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Flame-seared scallops</div><div class="menu-item-desc">Hand-dived Scottish scallops, cauliflower purée, brown butter, samphire, sea herbs</div><div class="menu-item-tags"><span class="tag tag-gf">GF</span></div></div><div class="menu-item-price">£19</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Heritage tomato & burrata</div><div class="menu-item-desc">Isle of Wight heritage tomatoes, Puglian burrata, aged balsamic, basil oil, sourdough</div><div class="menu-item-tags"><span class="tag tag-v">V</span><span class="tag tag-gf">GF available</span></div></div><div class="menu-item-price">£16</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Rabbit rillettes</div><div class="menu-item-desc">Slow-potted Cotswold rabbit, Dijon, cornichons, sourdough toast</div></div><div class="menu-item-price">£15</div></div>
+    </div>
+    <div class="menu-section-title" style="margin-top:2rem">Mains</div>
+    <div class="menu-grid">
+      <div class="menu-item"><div><div class="menu-item-name">Lamb rump, ember-roasted courgette</div><div class="menu-item-desc">Brecon Beacons lamb rump, coal-scorched courgette, salsa verde, lamb jus</div><div class="menu-item-tags"><span class="tag tag-gf">GF</span></div></div><div class="menu-item-price">£34</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Wild mushroom & lentil suet</div><div class="menu-item-desc">Black garlic, aged comté, braised Puy lentils, roasted shallot jus</div><div class="menu-item-tags"><span class="tag tag-v">V</span></div></div><div class="menu-item-price">£27</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Turbot, potato & brown butter</div><div class="menu-item-desc">Whole-roasted turbot fillet, crushed Cornish potatoes, Exmoor caviar, dill</div><div class="menu-item-tags"><span class="tag tag-gf">GF</span></div></div><div class="menu-item-price">£38</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Beef short rib, 48 hours</div><div class="menu-item-desc">Low-and-slow braised short rib, bone marrow gremolata, horseradish pomme purée, red wine jus</div><div class="menu-item-tags"><span class="tag tag-gf">GF</span></div></div><div class="menu-item-price">£36</div></div>
+    </div>
+    <div class="menu-section-title" style="margin-top:2rem">Desserts</div>
+    <div class="menu-grid">
+      <div class="menu-item"><div><div class="menu-item-name">Chocolate & miso tart</div><div class="menu-item-desc">Valrhona dark chocolate ganache, white miso caramel, buckwheat pastry, crème fraîche</div><div class="menu-item-tags"><span class="tag tag-v">V</span></div></div><div class="menu-item-price">£12</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Rhubarb & custard</div><div class="menu-item-desc">Forced Yorkshire rhubarb, vanilla custard, oat crumble, rhubarb granita</div><div class="menu-item-tags"><span class="tag tag-v">V</span><span class="tag tag-gf">GF</span></div></div><div class="menu-item-price">£11</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Selection of British cheeses</div><div class="menu-item-desc">Chef's daily selection, three pieces, with house chutney and oat crackers</div><div class="menu-item-tags"><span class="tag tag-v">V</span></div></div><div class="menu-item-price">£14</div></div>
+    </div>
+  </div>
+
+  <div class="menu-section" id="menu-wine">
+    <div class="menu-section-title">Aperitifs & Cocktails</div>
+    <div class="menu-grid">
+      <div class="menu-item"><div><div class="menu-item-name">Oak Smoked Negroni</div><div class="menu-item-desc">Campari, oak-aged gin, sweet vermouth, expressed orange, served over a large cube</div></div><div class="menu-item-price">£16</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">The Harvest Spritz</div><div class="menu-item-desc">Elderflower cordial, cucumber, British sparkling wine, fresh herbs</div><div class="menu-item-tags"><span class="tag tag-v">V</span><span class="tag tag-gf">GF</span></div></div><div class="menu-item-price">£14</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Ember & Tonic (N/A)</div><div class="menu-item-desc">House-smoked water, tonic, charred citrus, rosemary — our signature non-alcoholic aperitif</div><div class="menu-item-tags"><span class="tag tag-v">V</span><span class="tag tag-gf">GF</span></div></div><div class="menu-item-price">£9</div></div>
+    </div>
+    <div class="menu-section-title" style="margin-top:2rem">Wine by the Glass</div>
+    <div class="menu-grid">
+      <div class="menu-item"><div><div class="menu-item-name">Crémant d'Alsace, Domaine Bott-Geyl</div><div class="menu-item-desc">Bright, fine mousse, green apple and white flowers. Perfect aperitif.</div></div><div class="menu-item-price">£14</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Grüner Veltliner, Gut Oggau, Austria</div><div class="menu-item-desc">Biodynamic, peppery minerality, citrus. Excellent with fish courses.</div></div><div class="menu-item-price">£15</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Trousseau, Domaine Overnoy, Jura</div><div class="menu-item-desc">Light, earthy, dried cherry. Natural, unfined. A house favourite.</div></div><div class="menu-item-price">£18</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Baga, Filipa Pato, Bairrada</div><div class="menu-item-desc">Structured, dark fruit, hints of tobacco. Made for the short rib.</div></div><div class="menu-item-price">£17</div></div>
+    </div>
+  </div>
+
+  <div class="menu-section" id="menu-sunday">
+    <div class="menu-section-title">Sunday Lunch — 3 courses · £45 per person</div>
+    <div class="menu-grid">
+      <div class="menu-item"><div><div class="menu-item-name">Starters</div><div class="menu-item-desc">Choose from: Smoked celeriac velouté · Heritage tomato salad (V, GF) · Potted Cornish crab, melba toast · Roasted bone marrow, sourdough, gremolata</div></div><div class="menu-item-price">Included</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">The Sunday Roast</div><div class="menu-item-desc">Slow-roasted Hereford rib of beef — carved tableside. Yorkshire pudding, goose-fat roasted potatoes, seasonal vegetables, bone marrow gravy. Vegetarian option: whole roasted celeriac with walnut gravy</div><div class="menu-item-tags"><span class="tag tag-gf">GF available</span></div></div><div class="menu-item-price">Included</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Desserts</div><div class="menu-item-desc">Choose from: Sticky toffee pudding, clotted cream (V) · Eton mess, British strawberries (V, GF) · Treacle tart, vanilla ice cream (V) · British cheese selection +£6</div></div><div class="menu-item-price">Included</div></div>
+    </div>
+    <div class="menu-wine-note"><strong>Sunday Lunch</strong> is served 12:00–15:00 every Sunday. Bookings required. Children's portions available. A supplement of £12 per person applies for the cheese course.</div>
+  </div>
+</div>
+
+<!-- =================== TABLE BOOKING =================== -->
+<div class="page" id="page-table">
+  <div class="booking-layout">
+    <div class="booking-header">
+      <h1>Reserve a Table</h1>
+      <p>We accept bookings up to 90 days in advance. For same-day reservations, please call us directly.</p>
+    </div>
+    <div id="tableFormWrap">
+      <div class="form-card">
+        <div class="form-section-label">Your details</div>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" id="t-fname" placeholder="Isabelle"></div>
+          <div class="form-group"><label>Last Name</label><input type="text" id="t-lname" placeholder="Vance"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Email</label><input type="email" id="t-email" placeholder="you@example.com"></div>
+          <div class="form-group"><label>Phone</label><input type="tel" id="t-phone" placeholder="+44 7700 000000"></div>
+        </div>
+
+        <div class="form-section-label">Booking details</div>
+        <div class="form-row">
+          <div class="form-group"><label>Date</label><input type="date" id="t-date"></div>
+          <div class="form-group"><label>Party size</label>
+            <select id="t-guests">
+              <option value="">Select guests</option>
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>Preferred time</label>
+          <div class="time-grid" id="tableTimeGrid">
+            <div class="time-slot unavailable" onclick="selectTime(this,'t')">12:00</div>
+            <div class="time-slot" onclick="selectTime(this,'t')">12:30</div>
+            <div class="time-slot" onclick="selectTime(this,'t')">13:00</div>
+            <div class="time-slot unavailable" onclick="selectTime(this,'t')">13:30</div>
+            <div class="time-slot" onclick="selectTime(this,'t')">18:00</div>
+            <div class="time-slot" onclick="selectTime(this,'t')">18:30</div>
+            <div class="time-slot" onclick="selectTime(this,'t')">19:00</div>
+            <div class="time-slot" onclick="selectTime(this,'t')">19:30</div>
+            <div class="time-slot" onclick="selectTime(this,'t')">20:00</div>
+            <div class="time-slot" onclick="selectTime(this,'t')">20:30</div>
+            <div class="time-slot unavailable" onclick="selectTime(this,'t')">21:00</div>
+            <div class="time-slot" onclick="selectTime(this,'t')">21:30</div>
+          </div>
+        </div>
+        <input type="hidden" id="t-time" value="">
+
+        <div class="form-section-label">Preferences & dietary requirements</div>
+        <div class="form-group"><label>Occasion</label>
+          <select id="t-occasion">
+            <option value="">No special occasion</option>
+            <option>Birthday</option><option>Anniversary</option><option>Business dinner</option><option>Proposal</option><option>Date night</option><option>Other celebration</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Dietary requirements</label>
+          <select id="t-diet">
+            <option value="">None</option>
+            <option>Vegetarian</option><option>Vegan</option><option>Gluten-free</option><option>Dairy-free</option><option>Nut allergy</option><option>Other (add to notes)</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Additional notes</label>
+          <textarea id="t-notes" placeholder="Anything else we should know — a window seat preference, accessibility requirements, or a specific request…"></textarea>
+        </div>
+
+        <div class="form-section-label">Add-ons</div>
+        <div class="add-on-grid">
+          <div class="add-on" onclick="toggleAddOn(this)">
+            <div class="add-on-check">✓</div>
+            <div class="add-on-info"><h4>Welcome champagne</h4><p>Arrive to chilled glasses of our house Blanc de Blancs</p><div class="add-on-price">£18 per person</div></div>
+          </div>
+          <div class="add-on" onclick="toggleAddOn(this)">
+            <div class="add-on-check">✓</div>
+            <div class="add-on-info"><h4>Flowers & card</h4><p>Seasonal arrangement placed on your table before you arrive</p><div class="add-on-price">£45</div></div>
+          </div>
+          <div class="add-on" onclick="toggleAddOn(this)">
+            <div class="add-on-check">✓</div>
+            <div class="add-on-info"><h4>Chef's cheese board</h4><p>Extra cheese course for the table — British farmhouse selection</p><div class="add-on-price">£22</div></div>
+          </div>
+          <div class="add-on" onclick="toggleAddOn(this)">
+            <div class="add-on-check">✓</div>
+            <div class="add-on-info"><h4>Photographer</h4><p>45 minutes with our resident photographer, digital gallery within 48 hrs</p><div class="add-on-price">£120</div></div>
+          </div>
+        </div>
+
+        <button class="form-submit" onclick="submitBooking('table')">Confirm reservation</button>
+        <p class="policy-note">We hold tables for 15 minutes past your booking time. Cancellations within 24 hours may incur a £25 per person late fee.</p>
+      </div>
+    </div>
+    <div class="booking-success" id="tableSuccess">
+      <div class="success-icon">🕯️</div>
+      <h2>Your table is reserved</h2>
+      <p>A confirmation has been sent to your email address.</p>
+      <div class="booking-ref" id="tableRef">REF-000000</div>
+      <p>We look forward to welcoming you to Ember & Oak.</p>
+      <button class="btn-primary" style="margin-top:1.5rem" onclick="resetBooking('table')">Make another reservation</button>
+    </div>
+  </div>
+</div>
+
+<!-- =================== PARTY BOOKING =================== -->
+<div class="page" id="page-party">
+  <div class="booking-layout">
+    <div class="booking-header">
+      <h1>Private Dining & Events</h1>
+      <p>Our private dining room seats up to 24 guests. Exclusive buyouts of the full restaurant for up to 42 guests are available on certain dates.</p>
+    </div>
+    <div id="partyFormWrap">
+      <div class="form-card">
+        <div class="form-section-label">Your details</div>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" id="p-fname" placeholder="James"></div>
+          <div class="form-group"><label>Last Name</label><input type="text" id="p-lname" placeholder="Crawford"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Email</label><input type="email" id="p-email" placeholder="you@company.com"></div>
+          <div class="form-group"><label>Phone</label><input type="tel" id="p-phone" placeholder="+44 7700 000000"></div>
+        </div>
+
+        <div class="form-section-label">Event details</div>
+        <div class="form-row">
+          <div class="form-group"><label>Event type</label>
+            <select id="p-type">
+              <option value="">Select event type</option>
+              <option>Birthday celebration</option><option>Corporate dinner</option><option>Wedding anniversary</option><option>Engagement party</option><option>Retirement party</option><option>Product launch</option><option>Family gathering</option><option>Other</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Number of guests</label>
+            <select id="p-guests">
+              <option value="">Select</option>
+              <option>10–15</option><option>16–20</option><option>21–24</option><option>25–30</option><option>31–42 (full buyout)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Preferred date</label><input type="date" id="p-date"></div>
+          <div class="form-group"><label>Preferred time</label>
+            <select id="p-time">
+              <option value="">Select start time</option>
+              <option>12:00 (Lunch)</option><option>13:00 (Lunch)</option><option>18:00 (Dinner)</option><option>18:30 (Dinner)</option><option>19:00 (Dinner)</option><option>19:30 (Dinner)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>Estimated budget per head</label>
+          <select id="p-budget">
+            <option value="">Select range</option>
+            <option>£60–£85 (set menu)</option><option>£90–£120 (tasting menu)</option><option>£130+ (bespoke)</option>
+          </select>
+        </div>
+
+        <div class="form-section-label">Event extras</div>
+        <div class="add-on-grid">
+          <div class="add-on" onclick="toggleAddOn(this)">
+            <div class="add-on-check">✓</div>
+            <div class="add-on-info"><h4>Welcome reception</h4><p>Canapés and drinks reception 45 min before dinner</p><div class="add-on-price">£28 per person</div></div>
+          </div>
+          <div class="add-on" onclick="toggleAddOn(this)">
+            <div class="add-on-check">✓</div>
+            <div class="add-on-info"><h4>Wine pairing</h4><p>Sommelier-matched wines for every course</p><div class="add-on-price">£55 per person</div></div>
+          </div>
+          <div class="add-on" onclick="toggleAddOn(this)">
+            <div class="add-on-check">✓</div>
+            <div class="add-on-info"><h4>Celebration cake</h4><p>Bespoke layered cake from our pastry chef</p><div class="add-on-price">From £180</div></div>
+          </div>
+          <div class="add-on" onclick="toggleAddOn(this)">
+            <div class="add-on-check">✓</div>
+            <div class="add-on-info"><h4>Florist arrangement</h4><p>Seasonal centrepieces designed by our partner florist</p><div class="add-on-price">From £95</div></div>
+          </div>
+          <div class="add-on" onclick="toggleAddOn(this)">
+            <div class="add-on-check">✓</div>
+            <div class="add-on-info"><h4>Live musician</h4><p>Solo jazz musician or string duo for the evening</p><div class="add-on-price">£350–£650</div></div>
+          </div>
+          <div class="add-on" onclick="toggleAddOn(this)">
+            <div class="add-on-check">✓</div>
+            <div class="add-on-info"><h4>Photography package</h4><p>Dedicated photographer for 2 hours + full digital gallery</p><div class="add-on-price">£280</div></div>
+          </div>
+        </div>
+
+        <div class="form-section-label">Special requirements</div>
+        <div class="form-group"><label>Dietary & allergen notes</label>
+          <textarea id="p-diet" placeholder="Please list any dietary requirements, allergies, or restrictions across your group…" style="min-height:80px"></textarea>
+        </div>
+        <div class="form-group"><label>Additional notes or questions</label>
+          <textarea id="p-notes" placeholder="Tell us about your vision for the event. We'll be in touch within 24 hours to arrange a planning call."></textarea>
+        </div>
+
+        <button class="form-submit" onclick="submitBooking('party')">Submit enquiry</button>
+        <p class="policy-note">Private dining enquiries are reviewed within 24 hours. A 30% deposit is required to secure your date. Full payment is due 7 days before the event.</p>
+      </div>
+    </div>
+    <div class="booking-success" id="partySuccess">
+      <div class="success-icon">🥂</div>
+      <h2>Enquiry received</h2>
+      <p>Thank you — our events team will be in touch within 24 hours to discuss your event.</p>
+      <div class="booking-ref" id="partyRef">ENQ-000000</div>
+      <p>In the meantime, feel free to call us on <strong>020 7123 4567</strong> with any questions.</p>
+      <button class="btn-primary" style="margin-top:1.5rem" onclick="resetBooking('party')">Submit another enquiry</button>
+    </div>
+  </div>
+</div>
+
+<!-- =================== CONTACT =================== -->
+<div class="page" id="page-contact">
+  <div class="contact-layout">
+    <div class="booking-header" style="text-align:left;margin-bottom:2rem">
+      <h1>Contact us</h1>
+      <p style="color:var(--text2)">We'd love to hear from you. Use the form or reach us directly.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📍</div>
+          <div class="contact-detail-text">
+            <h4>Address</h4>
+            <p>14 Mount Street<br>Mayfair, London<br>W1K 2RH</p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📞</div>
+          <div class="contact-detail-text">
+            <h4>Telephone</h4>
+            <a href="tel:02071234567">020 7123 4567</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">✉️</div>
+          <div class="contact-detail-text">
+            <h4>Email</h4>
+            <a href="mailto:hello@emberandoak.co.uk">hello@emberandoak.co.uk</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🕐</div>
+          <div class="contact-detail-text">
+            <h4>Opening hours</h4>
+            <table class="hours-table">
+              <tr><td>Monday</td><td>Closed</td></tr>
+              <tr><td>Tue – Fri</td><td>12:00 – 14:30<br>18:00 – 22:00</td></tr>
+              <tr><td>Saturday</td><td>18:00 – 22:30</td></tr>
+              <tr><td>Sunday</td><td>12:00 – 15:30</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="map-placeholder">
+          <div style="font-size:1.5rem">📍</div>
+          <div>14 Mount Street, Mayfair, London W1K 2RH</div>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <h3>Send a message</h3>
+        <div class="form-card" style="padding:2rem">
+          <div class="form-row">
+            <div class="form-group"><label>Name</label><input type="text" id="c-name" placeholder="Your name"></div>
+            <div class="form-group"><label>Email</label><input type="email" id="c-email" placeholder="you@example.com"></div>
+          </div>
+          <div class="form-group"><label>Subject</label>
+            <select id="c-subject">
+              <option value="">Select a topic</option>
+              <option>General enquiry</option><option>Reservation question</option><option>Private dining</option><option>Press & media</option><option>Feedback</option><option>Other</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Message</label>
+            <textarea id="c-message" placeholder="How can we help?" style="min-height:140px"></textarea>
+          </div>
+          <button class="form-submit" onclick="submitContact()">Send message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== ADMIN =================== -->
+<div class="page" id="page-admin">
+  <div class="admin-layout">
+    <div class="admin-sidebar">
+      <div class="admin-sidebar-title">Dashboard</div>
+      <div class="admin-nav-item active" onclick="switchAdminPanel(this,'dash')"><span class="admin-nav-icon">📊</span>Overview</div>
+      <div class="admin-nav-item" onclick="switchAdminPanel(this,'table-bookings')"><span class="admin-nav-icon">🍽️</span>Table Bookings</div>
+      <div class="admin-nav-item" onclick="switchAdminPanel(this,'party-bookings')"><span class="admin-nav-icon">🥂</span>Party Enquiries</div>
+      <div class="admin-nav-item" onclick="switchAdminPanel(this,'messages')"><span class="admin-nav-icon">✉️</span>Messages</div>
+      <div class="admin-nav-item" onclick="switchAdminPanel(this,'availability')"><span class="admin-nav-icon">📅</span>Availability</div>
+    </div>
+    <div class="admin-main">
+
+      <!-- OVERVIEW -->
+      <div class="admin-panel active" id="panel-dash">
+        <div class="admin-topbar">
+          <h2>Overview</h2>
+          <span class="admin-badge">Live</span>
+        </div>
+        <div class="stats-row" id="statsRow"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:0">
+          <div class="data-table-wrap">
+            <div class="data-table-header"><h3>Recent table bookings</h3></div>
+            <div id="recentTableList" style="padding:0"></div>
+          </div>
+          <div class="data-table-wrap">
+            <div class="data-table-header"><h3>Bookings by day</h3></div>
+            <div class="chart-bar-wrap" id="bookingChart"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLE BOOKINGS -->
+      <div class="admin-panel" id="panel-table-bookings">
+        <div class="admin-topbar">
+          <h2>Table Bookings</h2>
+          <div class="data-table-filters">
+            <select class="filter-select" id="tFilter" onchange="renderTableBookings()">
+              <option value="all">All status</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="pending">Pending</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+        </div>
+        <div class="data-table-wrap admin-overflow">
+          <table class="data-table">
+            <thead><tr><th>Ref</th><th>Guest</th><th>Date</th><th>Time</th><th>Guests</th><th>Occasion</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="tableBookingsBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PARTY BOOKINGS -->
+      <div class="admin-panel" id="panel-party-bookings">
+        <div class="admin-topbar"><h2>Party Enquiries</h2></div>
+        <div class="data-table-wrap admin-overflow">
+          <table class="data-table">
+            <thead><tr><th>Ref</th><th>Contact</th><th>Event type</th><th>Date</th><th>Guests</th><th>Budget</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="partyBookingsBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- MESSAGES -->
+      <div class="admin-panel" id="panel-messages">
+        <div class="admin-topbar"><h2>Messages</h2></div>
+        <div class="data-table-wrap admin-overflow">
+          <table class="data-table">
+            <thead><tr><th>From</th><th>Email</th><th>Subject</th><th>Message</th><th>Received</th><th>Actions</th></tr></thead>
+            <tbody id="messagesBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- AVAILABILITY -->
+      <div class="admin-panel" id="panel-availability">
+        <div class="admin-topbar"><h2>Availability</h2></div>
+        <div class="data-table-wrap" style="padding:1.5rem">
+          <p style="font-size:0.88rem;color:var(--text2);margin-bottom:1rem">Click a slot to toggle open/closed. Changes save immediately.</p>
+          <div style="display:flex;gap:1rem;margin-bottom:1rem">
+            <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;color:var(--text2)"><div style="width:12px;height:12px;border-radius:3px;background:rgba(76,170,112,0.3)"></div>Open</div>
+            <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;color:var(--text2)"><div style="width:12px;height:12px;border-radius:3px;background:rgba(201,76,76,0.2)"></div>Closed</div>
+          </div>
+          <div class="availability-grid" id="availGrid"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay hidden" id="modalOverlay">
+  <div class="modal" id="modalContent">
+    <h3 id="modalTitle">Booking details</h3>
+    <div id="modalBody"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Close</button>
+      <button class="btn-confirm" id="modalConfirmBtn" onclick="confirmStatusChange()">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toastIcon">✓</span>
+  <span id="toastMsg">Done</span>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
